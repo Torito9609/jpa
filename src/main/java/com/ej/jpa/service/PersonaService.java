@@ -31,6 +31,21 @@ public class PersonaService implements IPersonaService{
 
     @Override
     public Persona findPersona(Long id_persona) {
-        return null;
+        //.findById retorna la persona que encontro o null
+        return personaRepository.findById(id_persona).orElse(null);
+    }
+
+    @Override
+    public void editarPersona(Long id_persona, Persona personaAcualizada) {
+        Persona personaExistente = personaRepository.findById(id_persona).orElse(null);
+
+        if(personaExistente != null){
+            personaExistente.setNombre(personaAcualizada.getNombre());
+            personaExistente.setApellido(personaAcualizada.getApellido());
+            personaExistente.setEdad(personaAcualizada.getEdad());
+            personaRepository.save(personaExistente);
+        } else{
+            System.out.println("No se encontró la persona con id: " + id_persona);
+        }
     }
 }
