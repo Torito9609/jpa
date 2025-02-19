@@ -16,5 +16,5 @@ public interface IPersonaService {
     public Persona findPersona(Long id_persona);
 
     //método para editar una persona
-    void editarPersona(Long id_persona, Persona personaAcualizada);
+    public void editarPersona(Long id_persona, Persona personaAcualizada);
 }
