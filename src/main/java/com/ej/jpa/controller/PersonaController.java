@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@RequestMapping("/personas")
 @RestController
 public class PersonaController {
 
@@ -15,27 +17,27 @@ public class PersonaController {
     private IPersonaService personaService;
 
     //Endpoint para obtener todas las personas
-    @GetMapping("/personas/traer")
+    @GetMapping("/traer")
     public List<Persona> getPersonas(){
         return personaService.getPersonas();
     }
 
     //Endpoint para crear una persona
-    @PostMapping("/personas/crear")
+    @PostMapping("/crear")
     public String savePersona(@RequestBody Persona persona){
         personaService.savePersona(persona);
         return "La persona fué creada con éxito.";
     }
 
     //Endpoint para eliminar una persona
-    @DeleteMapping("/personas/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public String deletePersona(@PathVariable Long id){
         personaService.deletePersona(id);
         return "La persona se eliminó.";
     }
 
     //Endpoint para editar una persona
-    @PutMapping("/personas/editar/{id}")
+    @PutMapping("/editar/{id}")
     public ResponseEntity<String> editarPersona(@PathVariable Long id, @RequestBody Persona personaActualizada){
         personaService.editarPersona(id, personaActualizada);
         return ResponseEntity.ok("Se actualizó correctamente");
